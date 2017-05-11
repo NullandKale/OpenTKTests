@@ -54,6 +54,7 @@ namespace OpenTKTest1
             Tatlas = new TextureAtlas("Content/roguelikeDungeon_transparent.png", 29, 18, 16, 1);
 
             atlasTest = new quad(Tatlas, 1);
+            atlasTest.components.Add(new KeyboardControl(5));
 
             projMatrix = Matrix4.CreateOrthographicOffCenter(0, window.Width, window.Height, 0, 0, 1);
         }

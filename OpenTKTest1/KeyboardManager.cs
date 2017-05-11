@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK;
 using OpenTK.Input;
-using System.Drawing;
 
 namespace OpenTKTest1
 {
@@ -56,9 +48,21 @@ namespace OpenTKTest1
             }
         }
 
+        public bool KeyHeld(Key k)
+        {
+            if (!isKeystateValid())
+            {
+                return false;
+            }
+            else
+            {
+                return lastKeyState.IsKeyDown(k) && keyState.IsKeyDown(k);
+            }
+        }
+
         private bool isKeystateValid()
         {
-            return keyState != null || lastKeyState != null;
+            return keyState != null && lastKeyState != null;
         }
     }
 }

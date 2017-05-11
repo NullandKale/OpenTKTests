@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="ContentPipe.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="iComponent.cs" />
     <Compile Include="iRenderable.cs" />
+    <Compile Include="KeyboardControl.cs" />
     <Compile Include="KeyboardManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

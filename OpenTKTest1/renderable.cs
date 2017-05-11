@@ -15,6 +15,7 @@ namespace OpenTKTest1
     {
         public transform pos;
         public List<triangle> verts;
+        public List<iComponent> components;
         public Texture2D tex;
         public Color col;
 

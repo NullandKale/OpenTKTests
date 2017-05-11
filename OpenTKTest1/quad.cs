@@ -16,16 +16,20 @@ namespace OpenTKTest1
         TextureAtlas atlas;
         int texID;
 
+        //Construct with single texture file
         public quad(string textureLocation)
         {
             pos = new transform();
+            components = new List<iComponent>();
             tex = ContentPipe.LoadTexture(textureLocation, false);
             Game.window.UpdateFrame += update;
         }
 
+        //Construct with texture atlas
         public quad(TextureAtlas tAtlas, int id)
         {
             pos = new transform();
+            components = new List<iComponent>();
             atlas = tAtlas;
             texID = id;
             tex = tAtlas.getTile(id);
@@ -34,6 +38,13 @@ namespace OpenTKTest1
 
         public override void update(object sender, FrameEventArgs e)
         {
+            //Loop through all componants and run them.
+            for(int i = 0; i < components.Count; i++)
+            {
+                components[i].Run(this);
+            }
+
+            //At end of update add renderer to render Queue.
             Game.renderQueue.Enqueue(render);
         }
 
