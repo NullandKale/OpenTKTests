@@ -19,22 +19,22 @@ namespace OpenTKTest1
 
         public void Run(renderable r)
         {
-            if(Game.Keyboard.KeyHeld(Key.W))
+            if(Game.input.KeyHeld(Key.W))
             {
                 r.pos.yPos -= speed;
             }
 
-            if (Game.Keyboard.KeyHeld(Key.S))
+            if (Game.input.KeyHeld(Key.S))
             {
                 r.pos.yPos += speed;
             }
 
-            if (Game.Keyboard.KeyHeld(Key.A))
+            if (Game.input.KeyHeld(Key.A))
             {
                 r.pos.xPos -= speed;
             }
 
-            if (Game.Keyboard.KeyHeld(Key.D))
+            if (Game.input.KeyHeld(Key.D))
             {
                 r.pos.xPos += speed;
             }

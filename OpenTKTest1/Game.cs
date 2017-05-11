@@ -15,7 +15,7 @@ namespace OpenTKTest1
     {
         public static GameWindow window;
         public static int tick = 0;
-        public static KeyboardManager Keyboard;
+        public static InputManager input;
         public static Queue<Action> renderQueue = new Queue<Action>();
 
         private Matrix4 projMatrix;
@@ -27,14 +27,14 @@ namespace OpenTKTest1
         int temp;
 
 
-        public Game(GameWindow _window)
+        public Game(GameWindow w)
         {
-            window = _window;
+            window = w;
 
             window.Load += window_Load;
             window.UpdateFrame += window_UpdateFrame;
             window.RenderFrame += window_RenderFrame;
-            Keyboard = new KeyboardManager();
+            input = new InputManager();
         }
 
         void window_Load(object sender, EventArgs e)

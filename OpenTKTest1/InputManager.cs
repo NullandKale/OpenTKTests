@@ -1,15 +1,22 @@
 ﻿using OpenTK;
 using OpenTK.Input;
+using System.Drawing;
 
 namespace OpenTKTest1
 {
-    class KeyboardManager
+    class InputManager
     {
         private KeyboardState lastKeyState;
         private KeyboardState keyState;
 
-        public KeyboardManager()
+        private MouseState lastMouseState;
+        private MouseState currentMouseState;
+
+        public Point mousePos;
+
+        public InputManager()
         {
+            mousePos = new Point();
             Game.window.UpdateFrame += update;
         }
 
@@ -19,8 +26,14 @@ namespace OpenTKTest1
             {
                 lastKeyState = keyState;
             }
-
             keyState = Keyboard.GetState();
+
+            if (currentMouseState != null)
+            {
+                lastMouseState = currentMouseState;
+            }
+            currentMouseState = Mouse.GetCursorState();
+            mousePos = Game.window.PointToClient(new Point(currentMouseState.X, currentMouseState.Y));
 
         }
 
