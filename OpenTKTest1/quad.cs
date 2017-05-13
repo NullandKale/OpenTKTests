@@ -13,6 +13,8 @@ namespace OpenTKTest1
 {
     public class quad : renderable
     {
+        public int width;
+        public int height;
         TextureAtlas atlas;
         int texID;
 
@@ -22,10 +24,12 @@ namespace OpenTKTest1
             pos = new transform();
             components = new List<iComponent>();
             tex = ContentPipe.LoadTexture(textureLocation, false);
+            height = tex.height;
+            width = tex.width;
             Game.window.UpdateFrame += update;
         }
 
-        //Construct with texture atlas
+        //Construct with texture atlas and Texture ID
         public quad(TextureAtlas tAtlas, int id)
         {
             pos = new transform();
@@ -33,6 +37,19 @@ namespace OpenTKTest1
             atlas = tAtlas;
             texID = id;
             tex = tAtlas.getTile(id);
+            height = tAtlas.tilePixelHeight;
+            width = tAtlas.tilePixelWidth;
+            Game.window.UpdateFrame += update;
+        }
+
+        //Construct quad from texture
+        public quad(text t)
+        {
+            pos = new transform();
+            components = new List<iComponent>();
+            tex = t.tex;
+            width = t.tiles[0].tAtlas.tilePixelWidth * t.tiles.Length;
+            height = t.tiles[0].tAtlas.tilePixelHeight;
             Game.window.UpdateFrame += update;
         }
 
@@ -65,19 +82,19 @@ namespace OpenTKTest1
             GL.Vertex2(0, 0);
 
             GL.TexCoord2(tex.xEnd, tex.yEnd);
-            GL.Vertex2(64, 64);
+            GL.Vertex2(width, height);
 
             GL.TexCoord2(tex.xStart, tex.yEnd);
-            GL.Vertex2(0, 64);
+            GL.Vertex2(0, height);
 
             GL.TexCoord2(tex.xStart, tex.yStart);
             GL.Vertex2(0, 0);
 
             GL.TexCoord2(tex.xEnd, tex.yStart);
-            GL.Vertex2(64, 0);
+            GL.Vertex2(width, 0);
 
             GL.TexCoord2(tex.xEnd, tex.yEnd);
-            GL.Vertex2(64, 64);
+            GL.Vertex2(width, height);
 
             GL.End();
         }

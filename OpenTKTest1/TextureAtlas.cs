@@ -17,17 +17,22 @@ namespace OpenTKTest1
         public int tileWidth;
         public int tileHeight;
 
+        public string path;
+
         private Texture2D baseTexture;
         private int _padding;
 
-        public TextureAtlas(string TexturePath, int xTileCount, int yTileCount, int pixelsPerTile, int padding)
+        public TextureAtlas(string TexturePath, int xTileCount, int yTileCount, int pixelsPerTileX, int pixelsPerTileY, int padding)
         {
             baseTexture = ContentPipe.LoadTexture(TexturePath, false);
+
+            path = TexturePath;
+
             pixelWidth = baseTexture.width + 1;
             pixelHeight = baseTexture.height + 1;
 
-            tilePixelHeight = pixelsPerTile;
-            tilePixelWidth = pixelsPerTile;
+            tilePixelHeight = pixelsPerTileY;
+            tilePixelWidth = pixelsPerTileX;
 
             tileWidth = xTileCount;
             tileHeight = yTileCount;

@@ -15,16 +15,26 @@ namespace OpenTKTest1
     {
         public transform pos;
         public List<triangle> verts;
-        public List<iComponent> components;
+        protected List<iComponent> components;
         public Texture2D tex;
         public Color col;
 
         public abstract void update(object sender, FrameEventArgs e);
         public abstract void render();
+
+        public void AddComponent(iComponent c)
+        {
+            //prevent adding multiple of the same component
+            if(!components.Contains(c))
+            {
+                components.Add(c);
+            }
+        }
     }
 
     public class transform
     {
+        public static int masterScale = 4;
         public float xPos = 0;
         public float yPos = 0;
         public float zPos = 0;
@@ -38,7 +48,7 @@ namespace OpenTKTest1
 
         public void updateMatrix()
         {
-              modelViewMatrix = Matrix4.CreateScale(xScale, yScale, 1f) * 
+              modelViewMatrix = Matrix4.CreateScale(xScale * masterScale, yScale * masterScale, 1f) * 
                 Matrix4.CreateRotationZ(rotZ) * 
                 Matrix4.CreateTranslation(xPos, yPos, zPos);
         }

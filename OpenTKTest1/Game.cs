@@ -24,8 +24,6 @@ namespace OpenTKTest1
         quad t0;
         quad atlasTest;
         TextureAtlas Tatlas;
-        int temp;
-
 
         public Game(GameWindow w)
         {
@@ -48,33 +46,29 @@ namespace OpenTKTest1
             GL.AlphaFunc(AlphaFunction.Gequal, 0.5f);
 
             t0 = new quad("Content/roguelikeCharBeard_transparent.png");
-            t0.pos.xPos = 600;
-            t0.pos.yPos = 100;
+            t0.AddComponent(new MouseControl());
 
-            Tatlas = new TextureAtlas("Content/roguelikeDungeon_transparent.png", 29, 18, 16, 1);
+            Tatlas = new TextureAtlas("Content/roguelikeDungeon_transparent.png", 29, 18, 16, 16, 1);
 
             atlasTest = new quad(Tatlas, 1);
-            atlasTest.components.Add(new KeyboardControl(5));
+            atlasTest.AddComponent(new KeyboardControl(5));
 
+            TextureAtlas font = new TextureAtlas("Content/font.png", 16, 6, 8, 12, 0);
+            letter[] ls = { letter.H, letter.e, letter.l, letter.l, letter.o, letter.space, letter.W, letter.o, letter.r, letter.l, letter.d, letter.exclaim };
+            text t = new text(ls, font);
+            quad text = new quad(t);            
+            
             projMatrix = Matrix4.CreateOrthographicOffCenter(0, window.Width, window.Height, 0, 0, 1);
         }
 
         void window_UpdateFrame(object sender, FrameEventArgs e)
         {
-            if(tick == 19)
-            {
-                temp++;
-                if(temp > 522)
-                {
-                    temp = 0;
-                }
-                atlasTest.tex = Tatlas.getTile(temp);
-            }
+
         }
 
         void window_RenderFrame(object sender, FrameEventArgs e)
         {
-            GL.ClearColor(Color.CornflowerBlue);
+            GL.ClearColor(Color.Black);
             GL.ClearDepth(1);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.MatrixMode(MatrixMode.Projection);

@@ -10,7 +10,7 @@ namespace OpenTKTest1
 {
     class KeyboardControl : iComponent
     {
-        public int speed;
+        private int speed;
 
         public KeyboardControl(int speed)
         {
