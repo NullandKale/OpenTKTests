@@ -54,10 +54,12 @@ namespace OpenTKTest1
             atlasTest.AddComponent(new KeyboardControl(5));
 
             TextureAtlas font = new TextureAtlas("Content/font.png", 16, 6, 8, 12, 0);
-            letter[] ls = { letter.H, letter.e, letter.l, letter.l, letter.o, letter.space, letter.W, letter.o, letter.r, letter.l, letter.d, letter.exclaim };
-            text t = new text(ls, font);
-            quad text = new quad(t);            
+
             
+            text t = new text("This is a test.", font);
+            //quad Text = new quad(t);            
+            
+
             projMatrix = Matrix4.CreateOrthographicOffCenter(0, window.Width, window.Height, 0, 0, 1);
         }
 
@@ -68,7 +70,7 @@ namespace OpenTKTest1
 
         void window_RenderFrame(object sender, FrameEventArgs e)
         {
-            GL.ClearColor(Color.Black);
+            GL.ClearColor(Color.DimGray);
             GL.ClearDepth(1);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.MatrixMode(MatrixMode.Projection);
