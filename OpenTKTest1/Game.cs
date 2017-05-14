@@ -16,7 +16,9 @@ namespace OpenTKTest1
         public static GameWindow window;
         public static int tick = 0;
         public static InputManager input;
+        public static ButtonManager buttonMan;
         public static Queue<Action> renderQueue = new Queue<Action>();
+        public static TextureAtlas font;
 
         private Matrix4 projMatrix;
 
@@ -33,6 +35,8 @@ namespace OpenTKTest1
             window.UpdateFrame += window_UpdateFrame;
             window.RenderFrame += window_RenderFrame;
             input = new InputManager();
+            buttonMan = new ButtonManager();
+            font = new TextureAtlas("Content/font.png", 16, 6, 8, 12, 0);
         }
 
         void window_Load(object sender, EventArgs e)
@@ -53,11 +57,10 @@ namespace OpenTKTest1
             atlasTest = new quad(Tatlas, 1);
             atlasTest.AddComponent(new KeyboardControl(5));
 
-            TextureAtlas font = new TextureAtlas("Content/font.png", 16, 6, 8, 12, 0);
+            text textTest = new text("This is a test.");
 
-            
-            text t = new text("This is a test.", font);
-            //quad Text = new quad(t);            
+            Button b = new Button("I am a button", Tatlas.getTile(68), PrintHello, MouseButton.Left);
+            b.SetPos(new Point(200, 200));
             
 
             projMatrix = Matrix4.CreateOrthographicOffCenter(0, window.Width, window.Height, 0, 0, 1);
@@ -85,6 +88,11 @@ namespace OpenTKTest1
 
             //Do tick at END of frame.
             Tick();
+        }
+
+        void PrintHello()
+        {
+            Console.WriteLine("Hello World!");
         }
 
         void Tick()

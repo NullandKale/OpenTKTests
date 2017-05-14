@@ -13,7 +13,7 @@ namespace OpenTKTest1
     {
         public Tile[] tiles;
 
-        public text(letter[] letters, TextureAtlas tAtlas)
+        public text(letter[] letters)
         {
             tiles = new Tile[letters.Length];
             pos = new transform();
@@ -23,15 +23,16 @@ namespace OpenTKTest1
             {
                 tiles[i] = new Tile();
                 tiles[i].TexID = (int)letters[i];
-                tiles[i].tAtlas = tAtlas;
+                tiles[i].tAtlas = Game.font;
             }
 
             tex = ContentPipe.TextureFrom1DTileMap(tiles);
             Game.window.UpdateFrame += update;
         }
 
-        public text(string s, TextureAtlas tAtlas)
+        public text(string s)
         {
+
             letter[] letters = stringToLetter(s);
             tiles = new Tile[letters.Length];
             pos = new transform();
@@ -41,7 +42,7 @@ namespace OpenTKTest1
             {
                 tiles[i] = new Tile();
                 tiles[i].TexID = (int)letters[i];
-                tiles[i].tAtlas = tAtlas;
+                tiles[i].tAtlas = Game.font;
             }
 
             tex = ContentPipe.TextureFrom1DTileMap(tiles);

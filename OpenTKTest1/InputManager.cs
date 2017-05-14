@@ -37,6 +37,16 @@ namespace OpenTKTest1
 
         }
 
+        public bool isClickedFalling(MouseButton b)
+        {
+            return currentMouseState.IsButtonUp(b) && lastMouseState.IsButtonDown(b);
+        }
+
+        public bool isClickedRising(MouseButton b)
+        {
+            return currentMouseState.IsButtonDown(b) && lastMouseState.IsButtonUp(b);
+        }
+
         public bool KeyRisingEdge(Key k)
         {
             if(!isKeystateValid())

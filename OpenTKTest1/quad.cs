@@ -29,6 +29,16 @@ namespace OpenTKTest1
             Game.window.UpdateFrame += update;
         }
 
+        public quad(Texture2D texture)
+        {
+            pos = new transform();
+            components = new List<iComponent>();
+            tex = texture;
+            height = tex.height;
+            width = tex.width;
+            Game.window.UpdateFrame += update;
+        }
+
         //Construct with texture atlas and Texture ID
         public quad(TextureAtlas tAtlas, int id)
         {

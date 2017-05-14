@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Button.cs" />
+    <Compile Include="ButtonManager.cs" />
     <Compile Include="ContentPipe.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="iComponent.cs" />
