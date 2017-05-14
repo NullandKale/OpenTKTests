@@ -10,7 +10,7 @@ namespace OpenTKTest1
     {
       static void Main(string[] args)
         {
-            OpenTK.GameWindow window = new OpenTK.GameWindow(800, 600, new OpenTK.Graphics.GraphicsMode(32,8,0,0));
+            OpenTK.GameWindow window = new OpenTK.GameWindow(1600, 900, new OpenTK.Graphics.GraphicsMode(32,8,0,0));
             Game game = new Game(window);
             window.Run(1.0 / 60.0);
         }

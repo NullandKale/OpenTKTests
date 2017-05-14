@@ -16,6 +16,8 @@ namespace OpenTKTest1
         public MouseButton button;
         public Action onClick;
 
+        private String echo;
+
         public Button(string text, Texture2D background, Action onClick, MouseButton buttonToCheck)
         {
             this.background = new quad(background);
@@ -27,12 +29,29 @@ namespace OpenTKTest1
             Game.buttonMan.Add(this);
         }
 
+        public Button(string text, Texture2D background, String toEcho, MouseButton buttonToCheck)
+        {
+            this.background = new quad(background);
+            t = new text(text);
+            this.background.width = t.tex.width;
+            this.background.height = t.tex.height;
+            this.echo = toEcho;
+            onClick = Echo;
+            button = buttonToCheck;
+            Game.buttonMan.Add(this);
+        }
+
+        private void Echo()
+        {
+            Console.WriteLine(echo);
+        }
+
         public void SetPos(Point p)
         {
             t.pos.xPos = p.X;
             t.pos.yPos = p.Y;
-            background.pos.xPos = p.X - 10;
-            background.pos.yPos = p.Y - 5;
+            background.pos.xPos = p.X;
+            background.pos.yPos = p.Y;
         }
     }
 }

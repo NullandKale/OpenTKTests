@@ -109,6 +109,66 @@ namespace OpenTKTest1
 
         }
 
+        public static Texture2D TextureFrom2DTileMap(Tile[,] tiles)
+        {
+            int tileSizeX = tiles[0,0].tAtlas.tilePixelWidth;
+            int tileSizeY = tiles[0,0].tAtlas.tilePixelHeight;
+            int xTileCount = tiles[0,0].tAtlas.tileWidth;
+            int yTileCount = tiles[0,0].tAtlas.tileHeight;
+            String filePath = tiles[0,0].tAtlas.path;
+
+            Bitmap atlas = new Bitmap(filePath);
+
+            Bitmap final = new Bitmap(tileSizeX * tiles.Length + 1, tileSizeY * tiles.Length + 1);
+            int id = GL.GenTexture();
+
+            for (int x = 0; x < tiles.GetLength(0); x++)
+            {
+                for (int y = 0; y < tiles.GetLength(1); y++)
+                {
+                    int tilePosY = tiles[x,y].TexID / xTileCount;
+                    int tilePosX = tiles[x,y].TexID % xTileCount;
+
+                    for (int k = 0; k < tileSizeY; k++)
+                    {
+                        for (int j = 0; j < tileSizeX; j++)
+                        {
+                            int xCord = (x * tileSizeX) + j;
+                            int yCord = (y * tileSizeY) + k;
+
+                            int tileCordX = ((tilePosX) * tileSizeX) + j;
+                            int tileCordY = ((tilePosY) * tileSizeY) + k;
+
+                            Color c = atlas.GetPixel(tileCordX, tileCordY);
+
+                            final.SetPixel(xCord, yCord, c);
+                        }
+                    }
+                }
+            }
+
+            BitmapData bmpData = final.LockBits(new Rectangle(0, 0, final.Width, final.Height),
+                    ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            GL.BindTexture(TextureTarget.Texture2D, id);
+
+            GL.TexImage2D(TextureTarget.Texture2D, 0,
+                PixelInternalFormat.Rgba, final.Width, final.Height, 0,
+                OpenTK.Graphics.OpenGL.PixelFormat.Bgra,
+                PixelType.UnsignedByte, bmpData.Scan0);
+
+            final.UnlockBits(bmpData);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
+                (int)TextureMinFilter.Nearest);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
+                (int)TextureMagFilter.Nearest);
+
+            return new Texture2D(id, final.Width, final.Height);
+
+        }
+
         public static void GLSetTexture(int id)
         {
             if(currentTexture == -1 || currentTexture != id)

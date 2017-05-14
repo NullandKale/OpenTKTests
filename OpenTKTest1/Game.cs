@@ -49,19 +49,19 @@ namespace OpenTKTest1
             GL.Enable(EnableCap.AlphaTest);
             GL.AlphaFunc(AlphaFunction.Gequal, 0.5f);
 
-            t0 = new quad("Content/roguelikeCharBeard_transparent.png");
-            t0.AddComponent(new MouseControl());
-
             Tatlas = new TextureAtlas("Content/roguelikeDungeon_transparent.png", 29, 18, 16, 16, 1);
+            Button[,] tAtlasTestButtons = new Button[29,18];
 
-            atlasTest = new quad(Tatlas, 1);
-            atlasTest.AddComponent(new KeyboardControl(5));
-
-            text textTest = new text("This is a test.");
-
-            Button b = new Button("I am a button", Tatlas.getTile(68), PrintHello, MouseButton.Left);
-            b.SetPos(new Point(200, 200));
-            
+            for(int i = 0; i < 29; i++)
+            {
+                int xPos = i * 48;
+                for(int j = 0; j < 18; j++)
+                {
+                    int yPos = j * 48;
+                    tAtlasTestButtons[i, j] = new Button(" ", Tatlas.getTile(j * 18 + i),"ID: " + (j * 18 + i), MouseButton.Left);
+                    tAtlasTestButtons[i, j].SetPos(new Point(xPos + 20, yPos));
+                }
+            }            
 
             projMatrix = Matrix4.CreateOrthographicOffCenter(0, window.Width, window.Height, 0, 0, 1);
         }
