@@ -58,6 +58,7 @@ namespace OpenTKTest1
 
         public bool isWithin(Button b, Point p)
         {
+            p = Game.ScreenToWorldSpace(p);
             return (p.X > (int)b.background.pos.xPos && p.Y > (int)b.background.pos.yPos && p.X < ((int)b.background.pos.xPos + b.background.width * 4) && p.Y < ((int)b.background.pos.yPos + b.background.height * 4));
         }
 

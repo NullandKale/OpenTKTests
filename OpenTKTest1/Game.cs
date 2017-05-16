@@ -23,9 +23,9 @@ namespace OpenTKTest1
         private Matrix4 projMatrix;
 
         //Testing
-        quad t0;
-        quad atlasTest;
         TextureAtlas Tatlas;
+        static int worldx = 0;
+        static int worldy = 0;
 
         public Game(GameWindow w)
         {
@@ -61,14 +61,33 @@ namespace OpenTKTest1
                     tAtlasTestButtons[i, j] = new Button(" ", Tatlas.getTile(j * 18 + i),"ID: " + (j * 18 + i), MouseButton.Left);
                     tAtlasTestButtons[i, j].SetPos(new Point(xPos + 20, yPos));
                 }
-            }            
-
-            projMatrix = Matrix4.CreateOrthographicOffCenter(0, window.Width, window.Height, 0, 0, 1);
+            }
+            
         }
 
         void window_UpdateFrame(object sender, FrameEventArgs e)
         {
+            projMatrix = Matrix4.CreateOrthographicOffCenter(worldx, window.Width + worldx, window.Height + worldy, worldy, 0, 1);
 
+            if(input.KeyRisingEdge(Key.A))
+            {
+                worldx += 5;
+            }
+
+            if(input.KeyRisingEdge(Key.D))
+            {
+                worldx -= 5;
+            }
+
+            if (input.KeyRisingEdge(Key.W))
+            {
+                worldy += 5;
+            }
+
+            if (input.KeyRisingEdge(Key.S))
+            {
+                worldy -= 5;
+            }
         }
 
         void window_RenderFrame(object sender, FrameEventArgs e)
@@ -88,6 +107,11 @@ namespace OpenTKTest1
 
             //Do tick at END of frame.
             Tick();
+        }
+
+        public static Point ScreenToWorldSpace(Point p)
+        {
+            return new Point(p.X + worldx, p.Y + worldy);
         }
 
         void PrintHello()
