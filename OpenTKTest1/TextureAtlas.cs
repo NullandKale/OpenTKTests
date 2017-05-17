@@ -24,7 +24,7 @@ namespace OpenTKTest1
 
         public TextureAtlas(string TexturePath, int xTileCount, int yTileCount, int pixelsPerTileX, int pixelsPerTileY, int padding)
         {
-            baseTexture = ContentPipe.LoadTexture(TexturePath, false);
+            baseTexture = TextureManager.LoadTexture(TexturePath, false);
 
             path = TexturePath;
 

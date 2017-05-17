@@ -26,7 +26,7 @@ namespace OpenTKTest1
                 tiles[i].tAtlas = Game.font;
             }
 
-            tex = ContentPipe.TextureFrom1DTileMap(tiles);
+            tex = TextureManager.TextureFrom1DTileMap(tiles);
             Game.window.UpdateFrame += update;
         }
 
@@ -45,7 +45,7 @@ namespace OpenTKTest1
                 tiles[i].tAtlas = Game.font;
             }
 
-            tex = ContentPipe.TextureFrom1DTileMap(tiles);
+            tex = TextureManager.TextureFrom1DTileMap(tiles);
             Game.window.UpdateFrame += update;
         }
 
@@ -63,7 +63,7 @@ namespace OpenTKTest1
             //Replace GL command with cached texture set.
             //This function only sets the texture if it isnt already set.
             //GL.BindTexture(TextureTarget.Texture2D, tex.id);
-            ContentPipe.GLSetTexture(tex.id);
+            TextureManager.GLSetTexture(tex.id);
 
             GL.Begin(PrimitiveType.Triangles);
 

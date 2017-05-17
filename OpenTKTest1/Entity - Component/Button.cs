@@ -29,6 +29,7 @@ namespace OpenTKTest1
             Game.buttonMan.Add(this);
         }
 
+        //DEBUG CONSTRUCTOR
         public Button(string text, Texture2D background, String toEcho, MouseButton buttonToCheck)
         {
             this.background = new quad(background);

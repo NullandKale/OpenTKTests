@@ -11,7 +11,7 @@ using System.Drawing.Imaging;
 
 namespace OpenTKTest1
 {
-    class ContentPipe
+    class TextureManager
     {
         static int currentTexture = -1;
 

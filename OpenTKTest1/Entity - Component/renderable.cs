@@ -18,6 +18,7 @@ namespace OpenTKTest1
         protected List<iComponent> components;
         public Texture2D tex;
         public Color col;
+        public bool active = true;
 
         public abstract void update(object sender, FrameEventArgs e);
         public abstract void render();

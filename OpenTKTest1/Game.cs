@@ -62,32 +62,13 @@ namespace OpenTKTest1
                     tAtlasTestButtons[i, j].SetPos(new Point(xPos + 20, yPos));
                 }
             }
-            
+
         }
 
         void window_UpdateFrame(object sender, FrameEventArgs e)
         {
             projMatrix = Matrix4.CreateOrthographicOffCenter(worldx, window.Width + worldx, window.Height + worldy, worldy, 0, 1);
-
-            if(input.KeyRisingEdge(Key.A))
-            {
-                worldx += 5;
-            }
-
-            if(input.KeyRisingEdge(Key.D))
-            {
-                worldx -= 5;
-            }
-
-            if (input.KeyRisingEdge(Key.W))
-            {
-                worldy += 5;
-            }
-
-            if (input.KeyRisingEdge(Key.S))
-            {
-                worldy -= 5;
-            }
+            
         }
 
         void window_RenderFrame(object sender, FrameEventArgs e)

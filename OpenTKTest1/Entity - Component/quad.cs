@@ -23,7 +23,7 @@ namespace OpenTKTest1
         {
             pos = new transform();
             components = new List<iComponent>();
-            tex = ContentPipe.LoadTexture(textureLocation, false);
+            tex = TextureManager.LoadTexture(textureLocation, false);
             height = tex.height;
             width = tex.width;
             Game.window.UpdateFrame += update;
@@ -52,17 +52,6 @@ namespace OpenTKTest1
             Game.window.UpdateFrame += update;
         }
 
-        //Construct quad from texture
-        public quad(text t)
-        {
-            pos = new transform();
-            components = new List<iComponent>();
-            tex = t.tex;
-            width = t.tiles[0].tAtlas.tilePixelWidth * t.tiles.Length;
-            height = t.tiles[0].tAtlas.tilePixelHeight;
-            Game.window.UpdateFrame += update;
-        }
-
         public override void update(object sender, FrameEventArgs e)
         {
             //Loop through all componants and run them.
@@ -72,7 +61,10 @@ namespace OpenTKTest1
             }
 
             //At end of update add renderer to render Queue.
-            Game.renderQueue.Enqueue(render);
+            if(active)
+            {
+                Game.renderQueue.Enqueue(render);
+            }
         }
 
         public override void render()
@@ -84,7 +76,7 @@ namespace OpenTKTest1
             //Replace GL command with cached texture set.
             //This function only sets the texture if it isnt already set.
             //GL.BindTexture(TextureTarget.Texture2D, tex.id);
-            ContentPipe.GLSetTexture(tex.id);
+            TextureManager.GLSetTexture(tex.id);
 
             GL.Begin(PrimitiveType.Triangles);
 
