@@ -20,6 +20,8 @@ namespace OpenTKTest1
         public static Queue<Action> renderQueue = new Queue<Action>();
         public static TextureAtlas font;
 
+        public StateMachines.GameStateManager gStateManager;
+
         private Matrix4 projMatrix;
 
         //Testing
@@ -37,6 +39,7 @@ namespace OpenTKTest1
             input = new InputManager();
             buttonMan = new ButtonManager();
             font = new TextureAtlas("Content/font.png", 16, 6, 8, 12, 0);
+            gStateManager = new StateMachines.GameStateManager();
         }
 
         void window_Load(object sender, EventArgs e)
@@ -49,19 +52,6 @@ namespace OpenTKTest1
             GL.Enable(EnableCap.AlphaTest);
             GL.AlphaFunc(AlphaFunction.Gequal, 0.5f);
 
-            Tatlas = new TextureAtlas("Content/roguelikeDungeon_transparent.png", 29, 18, 16, 16, 1);
-            Button[,] tAtlasTestButtons = new Button[29,18];
-
-            for(int i = 0; i < 29; i++)
-            {
-                int xPos = i * 48;
-                for(int j = 0; j < 18; j++)
-                {
-                    int yPos = j * 48;
-                    tAtlasTestButtons[i, j] = new Button(" ", Tatlas.getTile(j * 18 + i),"ID: " + (j * 18 + i), MouseButton.Left);
-                    tAtlasTestButtons[i, j].SetPos(new Point(xPos + 20, yPos));
-                }
-            }
 
         }
 

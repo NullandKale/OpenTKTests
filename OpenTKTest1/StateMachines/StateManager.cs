@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenTKTest1
+using OpenTK;
+
+namespace OpenTKTest1.StateMachines
 {
     abstract class StateManager
     {
-        public List<iState> states;
         public iState CurrentState;
-
-        public abstract void update();
+        public abstract void update(object sender, FrameEventArgs e);
     }
 }
