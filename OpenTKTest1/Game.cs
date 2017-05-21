@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -19,15 +20,17 @@ namespace OpenTKTest1
         public static ButtonManager buttonMan;
         public static Queue<Action> renderQueue = new Queue<Action>();
         public static TextureAtlas font;
+        public static Texture2D buttonBackground;
+        public static long frameTime;
 
         public StateMachines.GameStateManager gStateManager;
 
         private Matrix4 projMatrix;
 
-        //Testing
-        TextureAtlas Tatlas;
         static int worldx = 0;
         static int worldy = 0;
+
+        private Stopwatch sw;
 
         public Game(GameWindow w)
         {
@@ -36,10 +39,20 @@ namespace OpenTKTest1
             window.Load += window_Load;
             window.UpdateFrame += window_UpdateFrame;
             window.RenderFrame += window_RenderFrame;
+
             input = new InputManager();
             buttonMan = new ButtonManager();
+
+            //initialize global textures
             font = new TextureAtlas("Content/font.png", 16, 6, 8, 12, 0);
+            buttonBackground = Managers.TextureManager.LoadTexture("Content/buttonBackground.png", false);
+
+            //initialize game statemachine;
             gStateManager = new StateMachines.GameStateManager();
+
+            //inititialize frame timer;
+            sw = new Stopwatch();
+            frameTime = 0;
         }
 
         void window_Load(object sender, EventArgs e)
@@ -51,8 +64,6 @@ namespace OpenTKTest1
             GL.Enable(EnableCap.Texture2D);
             GL.Enable(EnableCap.AlphaTest);
             GL.AlphaFunc(AlphaFunction.Gequal, 0.5f);
-
-
         }
 
         void window_UpdateFrame(object sender, FrameEventArgs e)
@@ -78,6 +89,17 @@ namespace OpenTKTest1
 
             //Do tick at END of frame.
             Tick();
+            if(sw.IsRunning)
+            {
+                sw.Stop();
+                frameTime = sw.ElapsedMilliseconds;
+                sw.Reset();
+                sw.Start();
+            }
+            else
+            {
+                sw.Start();
+            }
         }
 
         public static Point ScreenToWorldSpace(Point p)

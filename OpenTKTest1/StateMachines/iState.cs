@@ -10,6 +10,5 @@ namespace OpenTKTest1.StateMachines
     {
         void enter();
         void update();
-        void clean();
     }
 }

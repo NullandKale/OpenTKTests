@@ -14,5 +14,9 @@ namespace OpenTKTest1
             Game game = new Game(window);
             window.Run(1.0 / 60.0);
         }
+        public static void exit()
+        {
+            Environment.Exit(0);
+        }
     }
 }

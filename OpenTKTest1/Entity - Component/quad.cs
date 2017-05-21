@@ -23,10 +23,9 @@ namespace OpenTKTest1
         {
             pos = new transform();
             components = new List<iComponent>();
-            tex = TextureManager.LoadTexture(textureLocation, false);
+            tex = Managers.TextureManager.LoadTexture(textureLocation, false);
             height = tex.height;
             width = tex.width;
-            Game.window.UpdateFrame += update;
         }
 
         public quad(Texture2D texture)
@@ -36,7 +35,6 @@ namespace OpenTKTest1
             tex = texture;
             height = tex.height;
             width = tex.width;
-            Game.window.UpdateFrame += update;
         }
 
         //Construct with texture atlas and Texture ID
@@ -49,10 +47,9 @@ namespace OpenTKTest1
             tex = tAtlas.getTile(id);
             height = tAtlas.tilePixelHeight;
             width = tAtlas.tilePixelWidth;
-            Game.window.UpdateFrame += update;
         }
 
-        public override void update(object sender, FrameEventArgs e)
+        public override void update()
         {
             //Loop through all componants and run them.
             for(int i = 0; i < components.Count; i++)
@@ -76,7 +73,7 @@ namespace OpenTKTest1
             //Replace GL command with cached texture set.
             //This function only sets the texture if it isnt already set.
             //GL.BindTexture(TextureTarget.Texture2D, tex.id);
-            TextureManager.GLSetTexture(tex.id);
+            Managers.TextureManager.GLSetTexture(tex.id);
 
             GL.Begin(PrimitiveType.Triangles);
 

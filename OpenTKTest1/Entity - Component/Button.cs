@@ -42,6 +42,12 @@ namespace OpenTKTest1
             Game.buttonMan.Add(this);
         }
 
+        public void update()
+        {
+            background.update();
+            t.update();
+        }
+
         private void Echo()
         {
             Console.WriteLine(echo);
@@ -53,6 +59,20 @@ namespace OpenTKTest1
             t.pos.yPos = p.Y;
             background.pos.xPos = p.X;
             background.pos.yPos = p.Y;
+        }
+
+        public void SetCenterPos(Point p)
+        {
+            t.pos.xPos = p.X - (t.tex.width * transform.masterScale / 2);
+            t.pos.yPos = p.Y - (t.tex.height * transform.masterScale / 2);
+            background.pos.xPos = p.X - (t.tex.width * transform.masterScale / 2) - 5;
+            background.pos.yPos = p.Y - (t.tex.height * transform.masterScale / 2) - 5;
+        }
+
+        public void SetActive(bool b)
+        {
+            t.active = b;
+            background.active = b;
         }
     }
 }

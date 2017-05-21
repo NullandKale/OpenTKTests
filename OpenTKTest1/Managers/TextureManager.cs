@@ -9,9 +9,9 @@ using OpenTK.Graphics.OpenGL;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace OpenTKTest1
+namespace OpenTKTest1.Managers
 {
-    class TextureManager
+    public class TextureManager
     {
         static int currentTexture = -1;
 

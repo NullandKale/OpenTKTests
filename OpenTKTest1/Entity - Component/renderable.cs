@@ -20,7 +20,7 @@ namespace OpenTKTest1
         public Color col;
         public bool active = true;
 
-        public abstract void update(object sender, FrameEventArgs e);
+        public abstract void update();
         public abstract void render();
 
         public void AddComponent(iComponent c)

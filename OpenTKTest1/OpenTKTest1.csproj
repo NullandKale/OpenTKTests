@@ -58,7 +58,7 @@
     <Compile Include="StateMachines\GameStateManager.cs" />
     <Compile Include="StateMachines\iState.cs" />
     <Compile Include="Entity - Component\KeyboardControl.cs" />
-    <Compile Include="InputManager.cs" />
+    <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Entity - Component\MouseControl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +78,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\buttonBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\roguelikeDungeon_transparent.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
