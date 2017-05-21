@@ -29,27 +29,30 @@ namespace OpenTKTest1
             {
                 for(int i = 0; i < Buttons.Count; i++)
                 {
-                    if (Buttons[i].button == MouseButton.Right && doRight)
+                    if(Buttons[i].t.active)
                     {
-                        if (isWithin(Buttons[i], Game.input.mousePos))
+                        if (Buttons[i].button == MouseButton.Right && doRight)
                         {
-                            Buttons[i].onClick.Invoke();
+                            if (isWithin(Buttons[i], Game.input.mousePos))
+                            {
+                                Buttons[i].onClick.Invoke();
+                            }
                         }
-                    }
 
-                    if (Buttons[i].button == MouseButton.Left && doLeft)
-                    {
-                        if (isWithin(Buttons[i], Game.input.mousePos))
+                        if (Buttons[i].button == MouseButton.Left && doLeft)
                         {
-                            Buttons[i].onClick.Invoke();
+                            if (isWithin(Buttons[i], Game.input.mousePos))
+                            {
+                                Buttons[i].onClick.Invoke();
+                            }
                         }
-                    }
 
-                    if (Buttons[i].button == MouseButton.Middle && doMiddle)
-                    {
-                        if (isWithin(Buttons[i], Game.input.mousePos))
+                        if (Buttons[i].button == MouseButton.Middle && doMiddle)
                         {
-                            Buttons[i].onClick.Invoke();
+                            if (isWithin(Buttons[i], Game.input.mousePos))
+                            {
+                                Buttons[i].onClick.Invoke();
+                            }
                         }
                     }
                 }

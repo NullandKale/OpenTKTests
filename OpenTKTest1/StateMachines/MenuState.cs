@@ -76,9 +76,8 @@ namespace OpenTKTest1.StateMachines
         private void toGameState()
         {
             Console.WriteLine("Changing to GameState");
-            GameStateManager.man.CurrentState = gState;
+            GameStateManager.man.CurrentState = GameStateManager.man.gState;
             gState.enter();
-            clean();
         }
 
     }

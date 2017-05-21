@@ -14,6 +14,8 @@ namespace OpenTKTest1.StateMachines
         public Button goodFPS;
         public Button badFPS;
 
+        public quad background;
+
         public GameState()
         {
             pState = GameStateManager.man.pState;
@@ -63,9 +65,8 @@ namespace OpenTKTest1.StateMachines
         private void toPauseState()
         {
             Console.WriteLine("Changing to PauseState");
-            GameStateManager.man.CurrentState = pState;
+            GameStateManager.man.CurrentState = GameStateManager.man.pState;
             pState.enter();
-            clean();
         }
 
         private void checkStates()
